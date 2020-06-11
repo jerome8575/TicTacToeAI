@@ -114,7 +114,7 @@ Move findBestMove(char board[3][3]){
                 if (moveValue >= 0){
                     bestMove.row = i;
                     bestMove.col = j;
-                    if (moveValue == 1){
+                    if (moveValue == 10){
                         return bestMove;
                     }
                     bm.push_back(bestMove);
