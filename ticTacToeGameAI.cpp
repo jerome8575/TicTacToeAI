@@ -1,5 +1,8 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
+#include <stdlib.h> 
+#include <time.h>
 
 using namespace std;
 
@@ -99,7 +102,7 @@ Move findBestMove(char board[3][3]){
     Move bestMove;
     bestMove.row = -1;
     bestMove.col = -1;
-
+    vector<Move> bm;
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
             if (board[i][j] == '-'){
@@ -107,16 +110,22 @@ Move findBestMove(char board[3][3]){
 
                 int moveValue = minimax(board, 0, false);
                 board[i][j] = '-';
-                if (moveValue > bestVal){
+                cout << "Move value is " << moveValue << endl;
+                if (moveValue >= 0){
                     bestMove.row = i;
                     bestMove.col = j;
-                    bestVal = moveValue;
+                    if (moveValue == 1){
+                        return bestMove;
+                    }
+                    bm.push_back(bestMove);
                 }
 
             }
         }
     }
-    return bestMove;
+    srand(time(NULL));
+    int i = rand() % bm.size();
+    return bm.at(i);
 
 }
 void makeHumanPlay(char board[3][3]){
