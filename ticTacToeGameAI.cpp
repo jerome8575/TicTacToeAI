@@ -121,7 +121,7 @@ Move findBestMove(char board[3][3]){
 }
 void makeHumanPlay(char board[3][3]){
     int r,c;
-    cout << "Input coordinates for move" << endl;
+    cout << "Input coordinates for move. Row followed by column." << endl;
     cin >> r >> c;
     board[r][c] = 'O';
 }
@@ -130,10 +130,10 @@ void makeAIPlay(char board[3][3]){
     board[Aimove.row][Aimove.col] = 'X';
 }
 int main(){
+    cout << "Welcome to Tic Tac Toe!" << endl;
     char board[3][3] = {{'-', '-', '-'},
                         {'-', '-', '-'},
                         {'-', '-', '-'}};
-    printBoard(board);
     int player = 0;
     while (checkWin(board) == 0 && !isFull(board)){
         if (player%2 == 0){
@@ -147,5 +147,12 @@ int main(){
             printBoard(board);
         }
     }
+    int winner = checkWin(board);
+        if (winner == 10){
+            cout << "AI won!" << endl;
+        }
+        else{
+            cout << "It's a tie" << endl;
+        }
     return 0;
 }
